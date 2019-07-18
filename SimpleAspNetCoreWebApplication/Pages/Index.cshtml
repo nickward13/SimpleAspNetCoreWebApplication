@@ -5,6 +5,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome to a Simple ASP.NET Core Web App</h1>
+    <p>Operating System: @Model.CurrentOperatingSystem
+    <br />Host: @Model.CurrentHostName
+    <br />IP Addresses:
+    @foreach(System.Net.IPAddress iPAddress in Model.CurrentIpAddresses)
+    {
+        <text><br />@iPAddress.ToString()</text>
+    }
+    </p>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
