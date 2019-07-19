@@ -37,3 +37,22 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: HelmInstaller@1
+      inputs:
+        helmVersionToInstall: 'latest'
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Windows Azure Internal Consumption (114d25c4-3f8f-4c41-83b1-22007178fc8c)'
+        azureResourceGroup: 'infra-group'
+        kubernetesCluster: 'HectagonCluster'
+        command: 'init'
+        arguments: '--client-only'
+    - task: HelmDeploy@0
+      inputs:
+        azureSubscription: 'Windows Azure Internal Consumption (114d25c4-3f8f-4c41-83b1-22007178fc8c)'
+        azureResourceGroup: 'infra-group'
+        kubernetesCluster: 'HectagonCluster'
+        command: 'package'
+        chartPath: '$(System.DefaultWorkingDirectory)/charts'
+        updateDependency: true
