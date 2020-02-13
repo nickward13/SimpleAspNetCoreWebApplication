@@ -18,6 +18,6 @@ jobs:
 
       - run: |
           pwd
-          ls -al
+          ls -al ..\*
           docker build . -t ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.sha }}
           docker push ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.sha }}
