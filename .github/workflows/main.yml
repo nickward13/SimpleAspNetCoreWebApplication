@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.DOCKER_REGISTRY }}  
@@ -17,7 +19,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - run: |
-          pwd
-          ls -al ..
           docker build . -t ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.sha }}
           docker push ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.sha }}
