@@ -19,5 +19,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - run: |
-          docker build . -t ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.sha }}
+          docker build . -t ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.run_number }}
+          docker push ${{ secrets.DOCKER_REGISTRY }}/simpleaspnetcorewebapp:${{ github.run_number }}
