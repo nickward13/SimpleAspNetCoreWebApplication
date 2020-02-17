@@ -16,11 +16,15 @@ namespace SimpleAspNetCoreWebApplication.Pages
         public string CurrentHostName { get; set; }
         [BindProperty]
         public IPAddress[] CurrentIpAddresses { get; set; }
+        [BindProperty]
+        public string NetCoreFrameworkDescription { get; set; }
+
         public void OnGet()
         {
             CurrentOperatingSystem = Environment.OSVersion.VersionString;
             CurrentHostName = System.Net.Dns.GetHostName();
             CurrentIpAddresses = System.Net.Dns.GetHostAddresses(CurrentHostName);
+            NetCoreFrameworkDescription = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
         }
     }
 }
