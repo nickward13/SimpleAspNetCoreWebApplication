@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-aspnet-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-aspnet-app
+  template:
+    metadata:
+      labels:
+        app: simple-aspnet-app
+    spec:
+      containers:
+      - name: simple-aspnet-app
+        image: hectagonacr.azurecr.io/nickward13/simpleaspnetcorewebapplication:140
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
